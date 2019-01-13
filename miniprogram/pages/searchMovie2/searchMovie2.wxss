@@ -1,0 +1,79 @@
+/* miniprogram/pages/searchMovie2/searchMovie2.wxss */
+.container {
+  display: flex; 
+  flex-direction: column;
+}
+.search-view {
+  width: 100%;
+  background: rgb(94, 198, 11);
+  padding: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.search-view-input {
+  width: 80%;
+  height: 30rpx;
+  background: #ffffff;
+  border-radius: 15rpx;
+  padding-left: 10rpx;
+}
+.movie-view {
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20rpx;
+  padding: 10rpx;
+  padding-left: 35rpx; 
+}
+.movie-view-index {
+  background: rgb(255,211,143);
+  color: rgb(154,95,0);
+  font-size: 50%;
+  font-weight: 900;
+  width: 100rpx;
+  padding: 10rpx 0;
+  border-radius: 10%;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.movie-view-introduce {
+  display: flex;
+  flex-direction: row;
+}
+.movie-view-introduce-cover {
+  width: 169rpx;
+  height: 236rpx;
+  border-radius: 10rpx;
+}
+.movie-view-introduce-message {
+  padding-left: 35rpx; 
+  width: 500rpx;
+}
+.movie-view-introduce-message-title {
+  font-weight: 800;
+}
+.movie-view-introduce-message-time {
+  font-weight: 800;
+  color: rgb(149,149,149);
+}
+.movie-view-introduce-message-genres {
+  width: 430rpx;
+  /* height: 100rpx; */
+  color: rgb(149,149,149);
+  font-size: 80%;
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:3;  
+  margin:20rpx 0;
+}
+.movie-view-introduce-message-rating-image {
+  height: 16.5rpx;
+  width: 82.5rpx;
+}

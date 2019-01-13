@@ -1,0 +1,20 @@
+<!--miniprogram/pages/music/music.wxml-->
+
+<scroll-view>
+<view class='container'>
+  <view class="search-view">
+    <button class='search-button' bindtap='onJumpSearchPage'>
+      <image class="search-image" src='../../images/search.png' ></image>搜索
+    </button>
+  </view>
+  <view class='list-title'>QQ音乐新歌榜TOP100</view>
+  <view class='music-view' wx:for="{{titleArray}}">
+    <image src='{{picArray[index]}}' class='music-view-image'></image>
+    <view class="music-view-message">
+      <view class='music-view-message-title'>{{item}}</view>
+      <text class='music-view-message-author'>{{authorArray[index]}}</text>
+    </view> 
+  </view>
+</view>
+
+</scroll-view>

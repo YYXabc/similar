@@ -1,0 +1,92 @@
+/* miniprogram/pages/movieMessage/movieMessage.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.view-title {
+  font-weight: 800;
+  margin-top: 20rpx;
+  font-size: 130%;
+  width: 90%;
+}
+.view-title-time {
+  font-weight: 800;
+  color: rgb(149,149,149);
+}
+.view-message {
+  margin-top: 15rpx; 
+  display: flex;
+  width: 90%;
+  font-size: 80%;
+}
+.view-messag-image {
+  width: 270rpx;
+  height: 400rpx;
+  border-radius: 15rpx;
+}
+.view-message-textView{
+  margin-left: 15rpx;
+  display: flex;
+  flex-direction: column;
+  margin-top: 7rpx;
+  width: 50%;
+  height: 400rpx;
+}
+.view-message-textView-text {
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2;  
+  margin-bottom: 15rpx;
+  
+}
+.view-message-textView-text-rating_img {
+  height: 16.5rpx;
+  width: 82.5rpx;
+}
+.view-summary {
+  width: 90%;
+  margin-top:10rpx; 
+}
+.view-summary-title {
+  font-size: 90%;
+}
+.view-summary-text {
+  font-size: 80%;
+  margin-top: 7rpx; 
+}
+.view-casts {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-top: 15rpx;
+}
+.view-casts-view {
+  display: flex;
+  flex-direction: row;
+}
+.view-casts-view-message {
+  width: 189rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.view-casts-view-message-image {
+  width: 169rpx;
+  height: 236rpx;
+  margin-right: 20rpx;
+  border-radius: 10rpx;
+}
+.view-casts-view-message-text{
+  font-size: 60%;
+  font-weight: 700;
+  width: 169rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+}

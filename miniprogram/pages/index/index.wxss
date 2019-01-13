@@ -1,0 +1,72 @@
+/**index.wxss**/
+.container {
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between;
+  height: 99vh;
+}
+.search-view {
+  width: 100%;
+  background: rgb(94, 198, 11);
+  padding: 20rpx;
+}
+.search-button {
+  width: 90%;
+  height: 50rpx;
+  font-size: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15rpx;
+  background: #ffffff;
+  color: rgb(178,178,178)
+}
+.search-image {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 8rpx;
+  color: rgb(178,178,178);
+}
+.view-show-movie {
+  margin-top: 15rpx;
+  width: 100%;
+  padding-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+.view-show-movie-title {
+  font-size: 110%;
+  font-weight: 700;
+}
+.view-show-movie-view {
+  display: flex;
+}
+.view-show-movie-view-message {
+  display: flex;
+  flex-direction: column;
+  width: 189rpx;
+}
+.view-show-movie-view-message-image {
+  width: 169rpx;
+  height: 236rpx;
+  margin-right: 20rpx;
+  border-radius: 10rpx;
+}
+.view-show-movie-view-message-title {
+  font-size: 70%;
+  font-weight: 700;
+  width: 169rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+.movie-show-movie-view-message-rating-image {
+  height: 16.5rpx;
+  width: 82.5rpx;
+}
+.more-button {
+  background: rgb(94, 198, 11);
+  font-weight: 600;
+  width: 300rpx;
+  margin-top: 20rpx;
+}

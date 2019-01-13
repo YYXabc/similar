@@ -1,0 +1,58 @@
+/* miniprogram/pages/music/music.wxss */
+.container {
+  display: flex; 
+  flex-direction: column;
+}
+.search-view {
+  width: 100%;
+  background: rgb(94, 198, 11);
+  padding: 20rpx;
+}
+.search-button {
+  width: 90%;
+  height: 50rpx;
+  font-size: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15rpx;
+  background: #ffffff;
+  color: rgb(178,178,178)
+}
+.search-image {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 8rpx;
+  color: rgb(178,178,178);
+}
+.list-title {
+  font-weight: 700;
+  margin-top:20rpx; 
+  width: 90%;
+}
+.music-view {
+  width: 90%;
+  display: flex;
+  margin-top: 40rpx;
+  align-items: center;
+  font-size: 100%;
+}
+.music-view-image {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 10rpx;
+}
+.music-view-message {
+  margin-left: 25rpx;
+  width: 450rpx;
+}
+.music-view-message-title {
+  margin-bottom: 15rpx;
+}
+.music-view-message-author {
+  color: rgb(178,178,178);
+}
+.music-view-love-button {
+  width: 48rpx;
+  height: 48rpx;
+}

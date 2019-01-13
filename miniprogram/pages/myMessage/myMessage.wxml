@@ -1,0 +1,17 @@
+<!--miniprogram/pages/myMessage/myMessage.wxml-->
+<view class='my-login'>
+  <button 
+    wx:if="{{loginState}}"
+    class='button-login'
+    open-type="getUserInfo" 
+    bindgetuserinfo="onShowMessage"
+  >获取
+  </button>
+  <view class="head-message" wx:if="{{!loginState}}">
+    <image class = "head-portrait" src='{{avatarUrl}}'></image>
+    <view>{{nickName}}</view>
+  </view>
+</view>
+<view class="my-body">
+  <view class='my-body-title'>我的音乐和电影</view>
+</view>

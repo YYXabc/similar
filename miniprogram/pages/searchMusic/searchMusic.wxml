@@ -1,0 +1,23 @@
+<!--miniprogram/pages/searchMusic/searchMusic.wxml-->
+<view class='container'>
+  <view class='search-view'>
+    <input type='text' class='search-view-input' placeholder='搜索歌手，专辑，单曲' bindconfirm='onSearch'></input>
+  </view>
+  <view class='music-view' wx:for="{{simpleData}}">
+    <image src='{{simpleData[index].image}}' class='music-view-image'></image>
+    <view class="music-view-message">
+      <view class='music-view-message-title'>{{simpleData[index].title}}</view>
+      <view class='music-view-message-rating'>
+        <image class='music-view-message-rating-image' src='{{simpleData[index].ratingSrc}}'></image>
+        <text class='music-view-message-rating-text'>{{simpleData[index].rating }}</text>
+        ({{simpleData[index].numRaters}}人评价过这张专辑)
+      </view>
+      <view class='music-view-message-comp'>
+        <text wx:if="{{simpleData[index].singer}}">{{simpleData[index].singer}}/</text>
+        <text wx:if="{{simpleData[index].pubdate}}">{{simpleData[index].pubdate}}/</text>
+        <text wx:if="{{simpleData[index].version}}">{{simpleData[index].version}}/</text>
+        <text wx:if="{{simpleData[index].media}}">{{simpleData[index].media}}</text>
+      </view>
+    </view> 
+  </view>
+</view>

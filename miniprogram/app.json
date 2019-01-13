@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/myMessage/myMessage",
+    "pages/music/music",
+    "pages/searchMusic/searchMusic",
+    "pages/searchMovie/searchMovie",
+    "pages/searchMovie2/searchMovie2",
+    "pages/movieMessage/movieMessage"
+  ],
+  "window": {
+    "backgroundColor": "#5ec60b",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#5ec60b",
+    "navigationBarTitleText": "瓜瓜瓜",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#3fff5d",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "电影",
+        "iconPath": "images/movie_n.png",
+        "selectedIconPath": "images/movie.png"
+      },
+      {
+        "pagePath": "pages/music/music",
+        "text": "唱片",
+        "iconPath": "images/music_n.png",
+        "selectedIconPath": "images/music.png"
+      },
+      {
+        "pagePath": "pages/myMessage/myMessage",
+        "text": "我的",
+        "iconPath": "images/user_n.png",
+        "selectedIconPath": "images/user.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 20000,
+    "connectSocket": 20000,
+    "uploadFile": 20000,
+    "downloadFile": 20000
+  }
+}

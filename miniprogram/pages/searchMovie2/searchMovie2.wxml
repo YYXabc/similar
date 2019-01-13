@@ -1,0 +1,32 @@
+<!--miniprogram/pages/searchMovie2/searchMovie2.wxml-->
+<view class='container'>
+  <view class='search-view'>
+    <input type='text' class='search-view-input' placeholder='搜索电影，电视剧，综艺' bindconfirm='onSearch'></input>
+  </view>
+  <view 
+    class='movie-view' 
+    wx:for="{{data}}"
+    data-id='{{data[index].id}}' 
+    bindtap='moiveMessage'
+    >
+    <view class='movie-view-introduce'>
+      <image 
+        class='movie-view-introduce-cover'
+        src='{{data[index].images.small}}'>
+      </image>
+      <view class='movie-view-introduce-message'>
+        <view class='movie-view-introduce-message-title'>
+          {{data[index].title}}
+          <text class='movie-view-introduce-message-time'>({{data[index].year}})</text>
+        </view>
+        <view class='movie-view-introduce-message-genres'>
+          {{data[index].genres}}/导演: {{data[index].directors[0].name}}/主演: {{casts[index].cast}}
+        </view>
+        <view>
+          {{data[index].rating.average}}
+          <image class='movie-view-introduce-message-rating-image' src='{{imgSrc[index]}}'></image>
+        </view>
+      </view>
+    </view>
+  </view>  
+</view>

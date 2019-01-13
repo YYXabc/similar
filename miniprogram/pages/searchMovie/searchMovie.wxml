@@ -1,0 +1,42 @@
+<!--miniprogram/pages/searchMovie/searchMovie.wxml-->
+<scroll-view>
+<view class='container'>
+  <view class='view-title'>豆瓣电影 Top250</view>
+  <view class='view-button-group'>
+    <button 
+      wx:for="{{buttonText}}"
+      class='{{buttonClass[index]}}'
+      bindtap='viewTo250Movie'
+      data-start='{{buttonDataStart[index]}}'
+      >{{item}}
+    </button>
+  </view>
+  <view 
+    class='movie-view' 
+    wx:for="{{data}}" 
+    data-id='{{data[index].id}}' 
+    bindtap='moiveMessage'>
+    <text class='movie-view-index'>No.{{indexNumber + index}}</text>
+    <view class='movie-view-introduce'>
+      <image 
+        class='movie-view-introduce-cover'
+        src='{{data[index].images.small}}'>
+      </image>
+      <view class='movie-view-introduce-message'>
+        <view class='movie-view-introduce-message-title'>
+          {{data[index].title}}
+          <text class='movie-view-introduce-message-time'>({{data[index].year}})</text>
+        </view>
+        <view class='movie-view-introduce-message-genres'>
+          {{data[index].genres}}/导演:
+          {{data[index].directors[0].name}}/主演: {{casts[index].cast}}
+        </view>
+        <view>
+          {{data[index].rating.average}}
+          <image class='movie-view-introduce-message-rating-image' src='{{imgSrc[index]}}'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+</scroll-view>

@@ -1,0 +1,67 @@
+<!--miniprogram/pages/movieMessage/movieMessage.wxml-->
+<view class='container'>
+  <view class='view-title'>{{title}}<text class='view-title-time'>({{year}})</text></view>
+  <view class='view-message'>
+    <image class='view-messag-image' src='{{imageSrc}}'>
+    </image>
+    <view class='view-message-textView'>
+      <view class='view-message-textView-text'>
+        导演:
+        <text wx:for="{{directors}}">
+          <text wx:if="{{index===0}}">{{item.name}}</text>
+          <text wx:if="{{index!==0}}">/{{item.name}}</text>
+        </text>
+      </view>
+      <view class='view-message-textView-text'>
+        主演:
+        <text wx:for="{{casts}}">
+          <text wx:if="{{index===0}}">{{item.name}}</text>
+          <text wx:if="{{index!==0}}">/{{item.name}}</text>
+        </text>
+      </view>
+      <view class='view-message-textView-text'>
+        制片国家/地区:
+        <text wx:for="{{countries}}">
+          <text wx:if="{{index===0}}">{{item}}</text>
+          <text wx:if="{{index!==0}}">/{{item}}</text>
+        </text>
+      </view>
+      <view class='view-message-textView-text'>
+        又名:
+        <text wx:for="{{akaNameArray}}">
+          <text wx:if="{{index===0}}">{{item}}</text>
+          <text wx:if="{{index!==0}}">/{{item}}</text>
+        </text>
+      </view>
+      <view class='view-message-textView-text'>
+        {{rating}}
+        <image class='view-message-textView-text-rating_img' src='{{ratingSrc}}'></image>
+        <text wx-if="{{rating!==0}}">{{ratins_count}}人评价</text>
+      </view>
+      <view class='view-message-textView-text'>
+        <text>{{collect_count}}人看过/{{wish_count}}人想看</text>
+      </view>          
+    </view>
+  </view>
+  <view class='view-summary'>
+    <view class='view-summary-title'>{{title}}的剧情简介 · · · · </view>
+    <view class='view-summary-text'>{{summary}}</view>
+  </view>
+  <view class='view-casts'>
+    <view class='view-summary-title'>{{title}}的主要演职员 · · · · </view>
+    <scroll-view scroll-x >
+    <view class='view-casts-view' >
+      <view class='view-casts-view-message' wx:for="{{directors}}">
+          <image class='view-casts-view-message-image' src='{{directors[index].avatars.small}}'></image>
+          <text class='view-casts-view-message-text'>(导演)</text>
+          <text class='view-casts-view-message-text'>{{directors[index].name}}</text>
+      </view>
+      <view class='view-casts-view-message' wx:for="{{casts}}">
+          <image class='view-casts-view-message-image' src='{{casts[index].avatars.small}}'></image>
+          <text class='view-casts-view-message-text'>(主演)</text>
+          <text class='view-casts-view-message-text'>{{casts[index].name}}</text>
+      </view>
+    </view>
+    </scroll-view>
+  </view>
+</view>
