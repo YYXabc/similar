@@ -20,4 +20,14 @@
       </view>
     </view> 
   </view>
+  <view class='button-group'>
+    <view 
+      wx:for="{{pageNumber}}"
+      class="{{buttonClassArray[index]}}"
+      data-number='{{item}}'
+      bindtap='viewButton'
+      >
+      {{item}}
+    </view>
+  </view>
 </view>

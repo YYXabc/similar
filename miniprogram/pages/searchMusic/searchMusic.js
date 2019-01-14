@@ -7,6 +7,31 @@ Page({
   data: {
 
   },
+  getButtonClassArray: function(allArray, currentNumber) {
+    let arr = []
+    for (let i = 0; i < allArray.length; i++) {
+      if (allArray[i] === currentNumber) {
+        arr.push("button-group-ok")
+      } else {
+        arr.push("button-group-no");
+      }
+    }
+    this.setData({
+      buttonClassArray: arr
+    })
+  },
+  goTop: function () {  // 一键回到顶部
+    if (wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+      })
+    }
+  },
   returnMoiveRatingImgSrcArray: function (average) {
     let number = Math.round(average);
     let src = {
@@ -26,33 +51,81 @@ Page({
 
     return src[number];
   },
+  viewButton: function(e) {
+    let pageNumber = Number(e.currentTarget.dataset.number);
+    let val = this.data.val;
+    let that = this;
+    if(!isNaN(pageNumber)){
+      let start;
+      let count = 15;
+      if (pageNumber === 1) {
+        start = 0;
+      } else {
+        start = (pageNumber - 1) * 15;
+      }
+      wx.request({
+        url: `https://yangyuxingblog.cn/testYun/phpServ/music.php?&q=${val}&start=${start}&count=${count}`,
+        success(res) {
+          let data = res.data.musics;
+          let simpleData = [];
+          for (let i = 0; i < data.length; i++) {
+            simpleData.push({
+              title: `${data[i].title} ${data[i].alt_title}`,//标题名字,
+              image: data[i].image,//专辑封面
+              numRaters: data[i].rating.numRaters,
+              rating: data[i].rating.average,//豆瓣评分
+              ratingSrc: that.returnMoiveRatingImgSrcArray(data[i].rating.average),//评分图片
+              media: data[i].attrs.media,//介质如CD 黑胶
+              pubdate: data[i].attrs.pubdate,//出版时间
+              publisher: data[i].attrs.publisher,//出版商
+              singer: data[i].attrs.singer,//表演者
+              version: data[i].attrs.version,
+            })
+          }
+          that.goTop();
+          that.setData({
+            simpleData: simpleData,
+            pageNumber: that.getPageButtonNumber(res.data.total,pageNumber),
+            val: val
+          })
+          that.getButtonClassArray(that.data.pageNumber, pageNumber)
+        }
+      })
+    }
+  },
+  getPageButtonNumber: function (total, currentNumber){
+    total = Math.ceil(Number(total)/15);
+    let arr = [];
+    if (total > 5) {
+      if (currentNumber <= 4) {
+        return [1, 2, 3, 4, 5, "...", total] 
+      }
+      else if (currentNumber + 4 > total) {//是最后4页
+        return [1, "...", total-4, total-3, total-2, total-1, total] 
+      }
+      else{
+        return[1,"...", currentNumber-1, currentNumber, currentNumber + 1, "...", total];
+      }
+    }else {
+      for (let i = 1; i <= total; i++) {
+        arr.push(i);
+      }
+      if (arr.length !== 1) {
+        return arr;
+      }
+    }
+  },
   onSearch: function (e) {
     this.setData({
       viewPageNumber: 15
     })
     let that = this;
     let val  = e.detail.value;
-    let getPicUrl = function (albumid) {
-      albumid = String(albumid);
-      let resultAlbumid = ""
-      for (let i = albumid.length - 2; i < albumid.length; i++) {
-        resultAlbumid += albumid[i]
-      }
-      resultAlbumid = Number(resultAlbumid);
-      albumid = Number(albumid);
-      return `https://imgcache.qq.com/music/photo/album_300/${resultAlbumid}/300_albumpic_${albumid}_0.jpg`
-    }
     wx.request({
       url: `https://yangyuxingblog.cn/testYun/phpServ/music.php?&q=${val}&start=0&count=15`,
       success(res) {
         let data = res.data.musics;
-        console.log(data);
         let simpleData = [];
-        let title = [];//标题名字
-        let rating = [];//豆瓣评分
-        let media = [];//介质如CD 黑胶
-        let pubdate = [];//出版时间
-        let singer = [];//表演者
         for (let i = 0 ; i < data.length; i++) {
           simpleData.push({
             title: `${data[i].title} ${data[i].alt_title}`,//标题名字,
@@ -64,13 +137,15 @@ Page({
             pubdate: data[i].attrs.pubdate,//出版时间
             publisher: data[i].attrs.publisher,//出版商
             singer: data[i].attrs.singer,//表演者
-            version: data[i].attrs.version
+            version: data[i].attrs.version,
           })
         }
-        console.log(simpleData) 
         that.setData({
-          simpleData: simpleData
+          simpleData: simpleData,
+          pageNumber: that.getPageButtonNumber(res.data.total,1),
+          val: val
         })
+        that.getButtonClassArray(that.data.pageNumber,1)
       }
     })
   },
@@ -89,14 +164,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let onView = function (pageNumber) {
-      if (pageNumber) {
-        console.log("Ok")
-      } else {
-        console.log("No");
-      }
-    }
-    onView(this.data.viewPageNumber)
   },
 
   /**
