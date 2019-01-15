@@ -52,7 +52,6 @@ Page({
           collect_count: data.collect_count,//看过人数
           wish_count: data.wish_count//想看人数
         })
-        console.log(that,data);
       }
     })
   },

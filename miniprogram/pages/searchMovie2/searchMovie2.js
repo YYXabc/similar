@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    isData: false
   },
   moiveMessage: function (e) {
     let id = e.currentTarget.dataset.id
@@ -47,23 +47,35 @@ Page({
       },
       success(res) {
         let data = res.data.subjects;
-        let casts = [];
-        let imgSrc = [];
-        for (let i = 0; i < data.length; i++) {
-          let array = [];
-          for (let k = 0; k < data[i].casts.length; k++) {
-            array.push(data[i].casts[k].name);
+        if (res.data.total) {
+          let casts = [];
+          let imgSrc = [];
+          for (let i = 0; i < data.length; i++) {
+            let array = [];
+            for (let k = 0; k < data[i].casts.length; k++) {
+              array.push(data[i].casts[k].name);
+            }
+            casts.push({
+              cast: array
+            })
+            imgSrc.push(that.returnMoiveRatingImgSrcArray(data[i].rating.average))
           }
-          casts.push({
-            cast: array
+          that.setData({
+            data: data,
+            casts: casts,
+            imgSrc: imgSrc,
+            isData: false
           })
-          imgSrc.push(that.returnMoiveRatingImgSrcArray(data[i].rating.average))
+        }else {
+          that.setData({
+            isData: true,
+            data: [],
+            casts: [],
+            imgSrc: [],
+            val: val
+          })
         }
-        that.setData({
-          data: data,
-          casts: casts,
-          imgSrc: imgSrc,
-        })
+
       }  
     })
   },

@@ -29,7 +29,7 @@ Page({
         return `https://imgcache.qq.com/music/photo/album_300/${resultAlbumid}/300_albumpic_${albumid}_0.jpg`
       }
       wx.request({
-        url: 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?g_tk=5381&uin=0&format=json&inCharset=utf-8&outCharset=utf-8%C2%ACice=0&platform=h5&needNewCode=1&tpl=3&page=detail&type=top&topid=27&_=1519963122923',
+        url: 'https://yangyuxingblog.cn/testYun/phpServ/music2.php',
         success(res) {
           let idArray = []
           let titleArray = [];

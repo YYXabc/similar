@@ -30,4 +30,8 @@
       {{item}}
     </view>
   </view>
+  <view class='view-error' wx:if="{{isData}}">
+    <text class='view-error-title'>搜索 {{val}}</text>
+    <text class='view-error-text'>没有找到关于 “{{val}}” 的唱片，换个搜索词试试吧。</text>
+  </view>
 </view>

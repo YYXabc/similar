@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    isData: false
   },
   getButtonClassArray: function(allArray, currentNumber) {
     let arr = []
@@ -116,36 +116,49 @@ Page({
     }
   },
   onSearch: function (e) {
-    this.setData({
-      viewPageNumber: 15
-    })
     let that = this;
     let val  = e.detail.value;
+    wx.showToast({
+      title: '',
+      icon: 'loading',
+      duration: 1500
+    })
     wx.request({
       url: `https://yangyuxingblog.cn/testYun/phpServ/music.php?&q=${val}&start=0&count=15`,
       success(res) {
-        let data = res.data.musics;
-        let simpleData = [];
-        for (let i = 0 ; i < data.length; i++) {
-          simpleData.push({
-            title: `${data[i].title} ${data[i].alt_title}`,//标题名字,
-            image: data[i].image,//专辑封面
-            numRaters: data[i].rating.numRaters,
-            rating: data[i].rating.average,//豆瓣评分
-            ratingSrc: that.returnMoiveRatingImgSrcArray(data[i].rating.average),//评分图片
-            media: data[i].attrs.media,//介质如CD 黑胶
-            pubdate: data[i].attrs.pubdate,//出版时间
-            publisher: data[i].attrs.publisher,//出版商
-            singer: data[i].attrs.singer,//表演者
-            version: data[i].attrs.version,
+        if (res.data.count) {
+          let data = res.data.musics;
+          let simpleData = [];
+          for (let i = 0; i < data.length; i++) {
+            simpleData.push({
+              title: `${data[i].title} ${data[i].alt_title}`,//标题名字,
+              image: data[i].image,//专辑封面
+              numRaters: data[i].rating.numRaters,
+              rating: data[i].rating.average,//豆瓣评分
+              ratingSrc: that.returnMoiveRatingImgSrcArray(data[i].rating.average),//评分图片
+              media: data[i].attrs.media,//介质如CD 黑胶
+              pubdate: data[i].attrs.pubdate,//出版时间
+              publisher: data[i].attrs.publisher,//出版商
+              singer: data[i].attrs.singer,//表演者
+              version: data[i].attrs.version,
+            })
+          }
+          that.setData({
+            simpleData: simpleData,
+            pageNumber: that.getPageButtonNumber(res.data.total, 1),
+            val: val,
+            isData: false
+          })
+          that.getButtonClassArray(that.data.pageNumber, 1)
+        } else {
+          that.setData({
+            isData: true,
+            simpleData:[],
+            pageNumber:[],
+            val: val
           })
         }
-        that.setData({
-          simpleData: simpleData,
-          pageNumber: that.getPageButtonNumber(res.data.total,1),
-          val: val
-        })
-        that.getButtonClassArray(that.data.pageNumber,1)
+                  
       }
     })
   },
